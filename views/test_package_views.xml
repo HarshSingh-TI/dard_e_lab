@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form view for Test Package -->
+    <record id="view_test_package_form" model="ir.ui.view">
+        <field name="name">test.package.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='options']" position="before">
+                <div>
+                    <label for="create_date"/>
+                    <field name="create_date"/>
+                </div>
+                <div>
+                    <label for="tester_id"/>
+                    <field name="tester_id"/>
+                </div>
+            </xpath>
+            <xpath expr="//div[@name='options']" position="attributes">
+              
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+             <!-- <xpath expr="//field[@name='name']" position="replace">
+            <field name="name" widget="selection" options="{'no_create': True}" placeholder="Select a Product"/>
+        </xpath> -->
+
+
+
+            <xpath expr="//div[@class='oe_chatter']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+            <xpath expr="//button[@name='action_view_sales']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+            <xpath expr="//button[@name='open_pricelist_rules']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+             
+            <xpath expr="//div[@class='oe_title']" position="after">
+
+                <div>
+                    <label for="Is_pathology"/>
+                   
+                        <field name="Is_pathology"/>
+                   
+                </div>
+                <div>
+                    <label for="home_sample"/>
+                   
+                        <field name="home_sample"/>
+                   
+                </div>
+            </xpath>
+            <xpath expr="//div[@class='oe_title']" position="before">
+
+                <div>
+                    <label for="reference"/>
+                   
+                        <field name="reference"/>
+                   
+                </div>
+            </xpath>
+
+            <xpath expr="//field[@name='Is_pathology']" position="after">
+            
+                <div>
+                    <label for="type"/>
+                        <field name="type"/>
+                </div>
+            </xpath>
+
+
+           
+           
+
+            <xpath expr="//button[@name='action_open_label_layout']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+            <xpath expr="//field[@name='tester_id']" position="after">
+                    <div>
+
+                   
+                        <div name="pricing" class="o_row">
+                    <label for="lst_price"/>
+                    <field name="list_price" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" invisible="1" readonly="product_variant_count &gt; 1" on_change="1" field_id="list_price_0"/>
+                    <field name="lst_price" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" on_change="1" field_id="lst_price_0"/>
+                    <span class="ms-2"/>
+                    <field name="tax_string" field_id="tax_string_0"/>
+                </div>
+                <div>
+                    <label for="taxes_id"/>
+
+                    <field name="taxes_id" widget="many2many_tags" context="{'default_type_tax_use':'sale', 'search_default_sale': 1, 'search_default_service': type == 'service', 'search_default_goods': type == 'consu'}" on_change="1" can_create="True" can_write="True" field_id="taxes_id_0"/>
+                </div>
+                <div name="standard_price_uom" invisible="product_variant_count &gt; 1 and not is_product_variant">
+                    <label for="standard_price" invisible="product_variant_count &gt; 1 and not is_product_variant"/>
+                    <field name="standard_price" class="oe_inline" widget="monetary" options="{'currency_field': 'cost_currency_id', 'field_digits': True}" field_id="standard_price_0"/>
+                </div>
+
+                <div>
+                    <label for="additional_product_tag_ids"/>
+
+                    <field name="additional_product_tag_ids" widget="many2many_tags" can_create="True" can_write="True" field_id="additional_product_tag_ids_0"/>
+                </div>
+            </div>
+            </xpath>
+
+
+            <xpath expr="//form//notebook" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </xpath>
+
+           
+
+        </field>
+    </record>
+
+ 
+    <record id="view_test_package_tree" model="ir.ui.view">
+        <field name="name">test.package.tree</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="type"/>
+                <field name="create_date"/>
+                <field name="tester_id"/>
+                <field name="home_sample"/>
+            </xpath>
+        </field>
+    </record>
+
+<record id="view_test_package_search" model="ir.ui.view">
+    <field name="name">test.package.search</field>
+    <field name="model">product.product</field>
+    <field name="priority" eval="1100"/>
+    <field name="arch" type="xml">
+        <search>
+         <filter string="Pathology" name="is_pathology" domain="[('Is_pathology', '=', True)]"/>
+        </search>
+    </field>
+
+</record>
+
+    <record id="action_test_package" model="ir.actions.act_window">
+        <field name="name">Test Packages</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_test_package_tree"/>
+        <field name="domain">[('Is_pathology', '=', True)]</field>
+        <field name="context">{'search_deafult_is_pathology':1}</field>
+        <field name="search_view_id" ref="view_test_package_search"/>
+    </record>
+
+
+
+
+</odoo>

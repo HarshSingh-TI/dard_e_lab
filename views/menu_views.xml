@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_dard_e_lab" name="Dard e Lab"></menuitem>
+
+
+    <menuitem id="menu_test_package_root" name="Test Packages" />
+    <menuitem id="menu_test_package" name="Test Packages" parent="menu_dard_e_lab" action="action_test_package" />
+
+    <!-- Menu Item for Workers -->
+    <menuitem id="menu_worker_root" name="Workers" sequence="20"/>
+    <menuitem id="menu_worker" name="Workers" parent="menu_dard_e_lab" action="action_worker" />
+
+    <menuitem id="menu_worker_root_menuitem" name="Manage" parent="menu_dard_e_lab" sequence="20"/>
+    <menuitem id="menu_worker_submenuitem" name="order" parent="menu_worker_root_menuitem" action="action_sale_order_inherit" />
+</odoo>

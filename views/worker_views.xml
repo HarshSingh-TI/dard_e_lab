@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <!-- Form view for Workers -->
+    <record id="view_worker_form" model="ir.ui.view">
+        <field name="name">res.partner.form.worker</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_view_sale_order']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            
+            <xpath expr="//field[@name='is_company']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+            <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+
+            <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//div[@class='oe_chatter']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//div[@class='o_row']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+            <!-- <xpath expr="//div[@field='company_name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath> -->
+
+          
+
+            
+
+            <!-- <xpath expr="//button[@name='action_view_invoice']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath> -->
+            
+            <xpath expr="//sheet" position="inside">
+                <group string="Worker Details">
+                    <!-- <field name="image_128" widget="image" /> -->
+                    <field name="test_ids" widget='one2many_list'>
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="create_date"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Tree view for Workers -->
+    <record id="view_worker_tree" model="ir.ui.view">
+        <field name="name">res.partner.tree.worker</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <!-- Adding custom fields to the tree view -->
+            <xpath expr="//tree" position="inside">
+                <field name="test_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="action_worker" model="ir.actions.act_window">
+        <field name="name">Workers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_worker_tree"/>
+    </record>
+  
+
+
+</odoo>
