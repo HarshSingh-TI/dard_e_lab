@@ -6,8 +6,9 @@
     'description': """This module provides features for managing pathology, including tests, customer details""",
     'depends': ['base','sale','product'],
     'data':[
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         "data/sequence.xml",
+        'views/sale_order_confirmation_wizard_views.xml',
         'views/sale_order_inherit_views.xml',
         'views/worker_views.xml',
         'views/test_package_views.xml',

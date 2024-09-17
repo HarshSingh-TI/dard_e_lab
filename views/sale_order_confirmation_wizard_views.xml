@@ -1,0 +1,23 @@
+<odoo>
+    <!-- Wizard Form View -->
+    <record id="view_sale_order_cancel_wizard_form" model="ir.ui.view">
+        <field name="name">sale.order.confirmation.wizard.form</field>
+        <field name="model">sale.order.confirmation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Cancel Sale Order" version="7.0">
+            <sheet>
+                <h1>This is validate form</h1>
+                    <button string="Cancel Order" type="object" name="validate_action_confirm" class="btn-primary"/>
+
+            </sheet>
+
+                
+                <!-- <footer>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer> -->
+            </form>
+        </field>
+    </record>
+
+   
+</odoo>

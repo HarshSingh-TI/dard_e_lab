@@ -56,16 +56,13 @@ class TestPackage(models.Model):
 
     
 
-#     @api.constrains('create_date')
-#     def _check_create_date(self):
-#         for rec in self:
-#             if rec.create_date:
-#                 current_date = datetime.now()
-#                 min_booking_date = current_date + timedelta(weeks=1)
-# #
-#                 if rec.create_date < current_date:
-#                     raise exceptions.ValidationError("The checkup date cannot be in the past.")
+    # @api.constrains('create_date')
+    # def _check_create_date(self):
+    #     for rec in self:
+    #         if rec.create_date:
+    #             current_date = datetime.now()
+               
+    #             if rec.create_date < current_date:
+    #                 raise exceptions.ValidationError("The checkup date cannot be in the past.")
                 
-#                 if rec.create_date < min_booking_date:
-#                     raise exceptions.ValidationError("Bookings must be done at least 1 week from the current date.")
-
+                
