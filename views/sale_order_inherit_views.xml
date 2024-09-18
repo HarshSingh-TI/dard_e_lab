@@ -18,11 +18,6 @@
                 <button name="action_cancel" type="object" class="oe_highlight" string="Cancel" context="{'from_button_click': True}"/>
             </xpath>
 
-
-
-
-
-
         
         <xpath expr="//button[@name='action_quotation_send']" position="attributes">
             <attribute name="invisible">1</attribute>
@@ -114,7 +109,7 @@
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <search>
-                <filter name="workers" string="Worker" domain="[('state', '!=', 'draft')]" context="{'group_by': 'partner_id'}"/>
+                <filter name="workers" string="Customer" domain="[('state', '!=', 'draft')]" context="{'group_by': 'partner_id'}"/>
                 <!-- Add other filters as needed -->
             </search>
         </field>
@@ -129,7 +124,7 @@
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,form,search</field>
         <field name="view_id" ref="view_sale_order_inherit_tree"/>
-        <!-- <field name="context">{'group_by': 'partner_id'}</field> -->
+        <field name="context">{}</field>
         <!-- <field name="search_view_id" ref="view_sale_order_search"/> -->
         
         <!-- <field name="context">{'search_default_worker_id': 1, 'group_by': 'partner_id'}</field> -->
