@@ -1,17 +1,15 @@
-from odoo import models,fields,api,exceptions
-# from odoo.exceptions import ValidationError
-
+from odoo import models, fields, api, exceptions
 from datetime import datetime, timedelta
 import logging
-_l=logging.getLogger(__name__)
+
+_l = logging.getLogger(__name__)
 
 class TestPackage(models.Model):
     _inherit = 'product.product'
 
     create_date = fields.Datetime(string='Checkup Date', help='Date and time when you can have your checkup', readonly=False)
-
-    reference=fields.Char(string="Test Package Reference",default="New")
-    type =fields.Selection([
+    reference = fields.Char(string="Test Package Reference", default="New")
+    type = fields.Selection([
         ('blood', 'Blood Tests'),
         ('urine', 'Urine Tests'),
         ('stool', 'Stool Tests'),
@@ -19,29 +17,36 @@ class TestPackage(models.Model):
         ('genetic', 'Genetic Tests'),
         ('biopsy', 'Biopsy')
     ], string='Checkup Type', required=True, default='blood')
-
-    list_price = fields.Float('Price', required=True)
     
-
+    list_price = fields.Float('Price', required=True)
     tester_id = fields.Many2one('res.partner', string='Sampler')
-
-    Is_pathology=fields.Boolean(string="is pathology",default=False,required=True)
-    home_sample=fields.Boolean(string="Home Sample",default=False,required=True)
-
-
-
+    Is_pathology = fields.Boolean(string="is pathology", default=False, required=True)
+    
+    home_sample = fields.Boolean(string="Home Sample", default=False, required=True)
 
     @api.model_create_multi
-    def create(self,vals_list):
+    def create(self, vals_list):
         for val in vals_list:
             _l.info(val)
-            if not val.get('reference') or val['reference']=='New':
-                val['reference']=self.env['ir.sequence'].next_by_code('product.product')
-            if  val['home_sample']:
-                val['standard_price']=val['lst_price']+100.0
+            is_server_down = self.env['ir.config_parameter'].sudo().get_param('Dad_e_Lab.is_server_down')
+            house_test = self.env['ir.config_parameter'].sudo().get_param('Dard_e_Lab.house_test')
+
+            if is_server_down:
+                raise models.ValidationError("The server is down. Bookings cannot be done right now. Sorry for the inconvenience")
+            
+            if not val.get('reference') or val['reference'] == 'New':
+                val['reference'] = self.env['ir.sequence'].next_by_code('product.product')
+
+            if house_test and house_test == 'True':
+                val['home_sample'] = False  # Disable home sample if house_test is true
+
+            if val['home_sample']:
+                val['standard_price'] = val['list_price'] + 100.0
             else:
-                val['standard_price']=val['lst_price']
+                val['standard_price'] = val['list_price']
+
         return super().create(vals_list)
+
     
     # @api.model
     # def write(self,vals_list):

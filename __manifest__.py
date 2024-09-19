@@ -11,6 +11,7 @@
         'views/sale_order_confirmation_wizard_views.xml',
         'views/sale_order_inherit_views.xml',
         'views/worker_views.xml',
+        'views/res_config_views.xml',
         'views/test_package_views.xml',
         'views/menu_views.xml',
 

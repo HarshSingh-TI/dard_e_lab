@@ -12,4 +12,9 @@
 
     <menuitem id="menu_worker_root_menuitem" name="Manage" parent="menu_dard_e_lab" sequence="20"/>
     <menuitem id="menu_worker_submenuitem" name="order" parent="menu_worker_root_menuitem" action="action_sale_order_inherit" />
+
+     <menuitem id="lab_menuitem_configuration" name="Settings" parent="menu_dard_e_lab" sequence="10"/>
+
+    <menuitem id="lab_menuitem_settings" name="Server Allowance" parent="lab_menuitem_configuration" action="res_config_setting_lab" sequence="20"/>
+
 </odoo>
