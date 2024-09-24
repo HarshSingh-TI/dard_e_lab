@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+     <template id="worker_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+
+                        <h1>Hello How are you??</h1>
+
+                        <p><strong>Name:</strong> <span t-esc="doc.name"/></p>
+
+                        <p><strong>Position:</strong> <span t-esc="doc.function"/></p>
+
+
+                        <p><strong>email:</strong> <span t-esc="doc.email"/></p>
+
+
+                        <p><strong>Mobile:</strong> <span t-esc="doc.mobile"/></p>
+
+
+                        <p><strong>Address:</strong> <span t-esc="doc.street"/><span t-esc="doc.street2"/><span t-esc="doc.city"/><span t-esc="doc.state_id"/></p>
+                    </div>
+                </t>
+            </t>
+        </t>                
+
+     </template>
+
+      <record id="worker_report_temp" model="ir.actions.report">
+     <field name="name">Worker Card</field>
+     <field name="model">res.partner</field>
+     <field name="report_type">qweb-pdf</field>
+     <field name="report_name">Dard_e_Lab.worker_report_template</field>
+     <field name="binding_model_id" ref="model_res_partner"/>
+
+
+     </record>
+</odoo> 
+
+
+
+
+ <!-- Barcode for Reference
+                        <div style="text-align: center; margin-top: 20px;">
+                            <img t-att-src="'/report/barcode/QR/%s' % doc.reference" alt="Barcode for Reference" style="width: 150px; height: 150px;" />
+                            <p><strong>Reference:</strong> <span t-esc="doc.reference"/></p>
+                        </div> -->

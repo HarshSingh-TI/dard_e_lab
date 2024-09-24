@@ -17,6 +17,9 @@ class TestPackage(models.Model):
         ('genetic', 'Genetic Tests'),
         ('biopsy', 'Biopsy')
     ], string='Checkup Type', required=True, default='blood')
+
+    cus_name = fields.Char(string="Patient Name", required=True)
+    cus_add = fields.Char(string="Address", required=True)
     
     list_price = fields.Float('Price', required=True)
     tester_id = fields.Many2one('res.partner', string='Sampler')
@@ -28,8 +31,14 @@ class TestPackage(models.Model):
     def create(self, vals_list):
         for val in vals_list:
             _l.info(val)
-            is_server_down = self.env['ir.config_parameter'].sudo().get_param('Dad_e_Lab.is_server_down')
-            house_test = self.env['ir.config_parameter'].sudo().get_param('Dard_e_Lab.house_test')
+            # is_server_down = self.env['ir.config_parameter'].sudo().get_param('Dad_e_Lab.is_server_down')
+            # house_test = self.env['ir.config_parameter'].sudo().get_param('Dard_e_Lab.house_test')
+
+            
+            settings = self.env['res.config.settings'].search([], limit=1)
+            is_server_down = settings and settings.is_server_down
+            house_test = settings and settings.house_test
+
 
             if is_server_down:
                 raise models.ValidationError("The server is down. Bookings cannot be done right now. Sorry for the inconvenience")
@@ -38,12 +47,12 @@ class TestPackage(models.Model):
                 val['reference'] = self.env['ir.sequence'].next_by_code('product.product')
 
             if house_test and house_test == 'True':
-                val['home_sample'] = False  # Disable home sample if house_test is true
+                val['home_sample'] = False 
 
             if val['home_sample']:
-                val['standard_price'] = val['list_price'] + 100.0
+                val['standard_price'] = val['list_price'] + (val['list_price']* 0.15) + 100.0 
             else:
-                val['standard_price'] = val['list_price']
+                val['standard_price'] = val['list_price']+ (val['list_price']* 0.15)
 
         return super().create(vals_list)
 

@@ -16,6 +16,7 @@
                     <label for="tester_id"/>
                     <field name="tester_id"/>
                 </div>
+             
             </xpath>
             <xpath expr="//div[@name='options']" position="attributes">
               
@@ -49,6 +50,17 @@
                    
                         <field name="Is_pathology"/>
                    
+                </div>
+
+                   <div>
+                    <label for="cus_name"/>
+                    <field name="cus_name"/>
+                </div>
+
+                
+                <div>
+                    <label for="cus_add"/>
+                    <field name="cus_add"/>
                 </div>
                 <div>
                     <label for="home_sample"/>

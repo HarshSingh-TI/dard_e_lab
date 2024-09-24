@@ -9,6 +9,8 @@
             <xpath expr="//header/button[@name='action_confirm'][2]" position="attributes">\
                 <attribute name="invisible">1</attribute>
             </xpath>
+
+
             <xpath expr="//header/button[@name='action_cancel']" position="attributes">\
                 <attribute name="invisible">1</attribute>
             </xpath>
@@ -109,8 +111,8 @@
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <search>
-                <filter name="workers" string="Customer" domain="[('state', '!=', 'draft')]" context="{'group_by': 'partner_id'}"/>
-                <!-- Add other filters as needed -->
+                <filter name="workers" string="Customer" domain="[('state', '!=', 'draft')]"/>
+                
             </search>
         </field>
     </record>

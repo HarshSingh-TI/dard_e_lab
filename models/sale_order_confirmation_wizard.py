@@ -17,7 +17,7 @@ class SaleOrderCancelWizard(models.TransientModel):
         sale_ids = self.env['sale.order'].browse(ids)
         _l.info(f"------------------> sale ids : {sale_ids}")
         
-        # Add context to avoid repeated actions
+        
         sale_ids = sale_ids.with_context(validate_not_click=False)
         _l.info(f"----------> wizard context : {self._context}")
         

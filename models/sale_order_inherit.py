@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
             'res_model': 'sale.order.confirmation.wizard',
             'view_mode': 'form',
             'target': 'new',
-            'context': {'default_worker_id': self.worker_id.id}, # Set default value for worker_id
+            'context': {'default_worker_id': self.worker_id.id}, 
             'from_button_click': True
         }
             else:
@@ -41,9 +41,9 @@ class SaleOrder(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Filtered Sale Orders',
             'res_model': 'sale.order',
-            'view_mode': 'tree,form',  # Display the tree view and form view
+            'view_mode': 'tree,form',  
             'domain': [('state', '!=', 'draft')],  
             'context': {
-                'group_by': 'partner_id',  # Group by partner_id
+                'group_by': 'partner_id', 
             },
         }        

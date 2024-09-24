@@ -6,8 +6,8 @@ class resConfig(models.TransientModel):
     
 
 
-    is_server_down=fields.Boolean(string="Go Offline", config_parameter='Dad_e_Lab.is_server_down')
+    is_server_down=fields.Boolean(string="Go Offline", related='company_id.is_server_down', readonly=False)
 
-    no_worker=fields.Boolean(string="Stop Tester Allotment", config_parameter='Dard_e_Lab.no_worker')
+    no_worker=fields.Boolean(string="Stop Tester Allotment", related='company_id.no_worker', readonly=False)
 
-    house_test= fields.Boolean(string="Stop Home Samples", config_parameter='Dard_e_Lab.house_test')
+    house_test= fields.Boolean(string="Stop Home Samples", related='company_id.house_test', readonly=False)

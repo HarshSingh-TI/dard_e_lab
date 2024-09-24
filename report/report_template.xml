@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+     <template id="pathology_lab_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1>Hello How are you??</h1>
+                        
+                        <p><strong>Checkup Date:</strong> <span t-esc="doc.create_date"/></p>
+
+                        
+                        <p><strong>Test Package Reference:</strong> <span t-esc="doc.reference"/></p>
+
+                        <p><strong>Price:</strong> <span t-esc="doc.standard_price"/> USD</p>
+
+                        <p><strong>Sampler:</strong> <span t-esc="doc.tester_id.name"/></p>
+
+                        <p><strong>Is Pathology:</strong> 
+                            <span t-esc="'Yes' if doc.Is_pathology else 'No'"/>
+                        </p>
+
+                        <p><strong>Home Sample:</strong> 
+                            <span t-esc="'Yes' if doc.home_sample else 'No'"/>
+                        </p>
+
+                    </div>
+                </t>
+            </t>
+        </t>                
+
+     </template>
+
+     <record id="test_package_report_temp" model="ir.actions.report">
+     <field name="name">Test Card</field>
+     <field name="model">product.product</field>
+     <field name="report_type">qweb-pdf</field>
+     <field name="report_name">Dard_e_Lab.pathology_lab_report_template</field>
+     <field name="binding_model_id" ref="model_product_product"/>
+
+
+     </record>
+</odoo> 

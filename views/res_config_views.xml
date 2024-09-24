@@ -5,8 +5,8 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div" position="inside">
-                
+            <xpath expr="//form" position="inside">
+                <app data-string="Dard_e_Lab" string="Dard e Lab" name="Dard_e_Lab">
                 <div class="m-2">
                     <label for="is_server_down" string="Go Offline" />
                     <field name="is_server_down"/>
@@ -17,6 +17,7 @@
                     <label for="house_test" string="Stop Home Samples"/>
                     <field name="house_test"/>
                 </div>
+                </app>
 
             </xpath>
         </field>
@@ -26,8 +27,8 @@
         <field name="name">res.config.setting.action</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
+        <field name="context">{"module":"Dard_e_Lab", "bin_size":False}</field>
 
-        <field name="context">{'bin_size':False}</field>
 
     </record>
 
