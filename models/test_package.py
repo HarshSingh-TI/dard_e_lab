@@ -50,9 +50,9 @@ class TestPackage(models.Model):
                 val['home_sample'] = False 
 
             if val['home_sample']:
-                val['standard_price'] = val['list_price'] + (val['list_price']* 0.15) + 100.0 
+                val['standard_price'] = val['list_price'] + (val['list_price']*0.15) + 100.0 
             else:
-                val['standard_price'] = val['list_price']+ (val['list_price']* 0.15)
+                val['standard_price'] = val['list_price']+ (val['list_price']*0.15)
 
         return super().create(vals_list)
 

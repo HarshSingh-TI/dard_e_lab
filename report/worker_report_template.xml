@@ -10,6 +10,7 @@
                         <div style="text-align: center; margin-bottom: 20px;">
                             <h1 style="font-size: 24px; color: #007bff;">Worker Information</h1>
                             <p style="font-size: 16px;">Below are the details of the worker.</p>
+                            <img t-att-src="image_data_uri(doc.image_1920)" style="width: 200px; height: 100px"/>
                         </div>
 
                         <div class="row" style="padding: 10px 0;">
@@ -19,6 +20,8 @@
                             <div class="col-6">
                                 <p><strong style="color: #17a2b8;">Position:</strong> <span t-esc="doc.function"/></p>
                             </div>
+                            
+          
                         </div>
 
                         <div class="row" style="padding: 10px 0;">
