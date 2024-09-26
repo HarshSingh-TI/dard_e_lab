@@ -4,52 +4,96 @@
     <template id="worker_report_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="web.external_layout">
-                    <div class="page" style="background-color: #f4f6f7; padding: 20px; border-radius: 10px;">
+                <t t-call="Dard_e_Lab.worker_report_header"/>
+                    <div class="page" style="background-color: #fff0; padding: 2px; border-radius: 1px;">
                         
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <h1 style="font-size: 24px; color: #007bff;">Worker Information</h1>
-                            <p style="font-size: 16px;">Below are the details of the worker.</p>
-                            <img t-att-src="image_data_uri(doc.image_1920)" style="width: 200px; height: 100px"/>
+                        <div style="text-align: right; margin-bottom: 40px;">
+                            <img t-att-src="image_data_uri(doc.image_1920)" style="width: 90px; height: 100px; position: relative; right: 5px;"/>
                         </div>
 
-                        <div class="row" style="padding: 10px 0;">
-                            <div class="col-6">
-                                <p><strong style="color: #17a2b8;">Name:</strong> <span t-esc="doc.name"/></p>
+
+                        <div style="margin-top: 25px; display: flex; justify-content: space-between; ">
+                            <div style="flex: 1;padding: 5px; border-right:4px solid #8cc63f;">
+                                <p style="font-size: 16px;"><strong>Name:</strong> <span t-esc="doc.name" style="font-size: 18px; color: #00ae4d;"/></p>
                             </div>
-                            <div class="col-6">
-                                <p><strong style="color: #17a2b8;">Position:</strong> <span t-esc="doc.function"/></p>
+                            <div style="flex: 1; text-align: center; padding: 5px; border-right:4px solid #8cc63f;">
+                                <p style="font-size: 16px;"><strong>Position :</strong><span t-esc="doc.function" style="font-size: 18px; color: #00ae4d;"/></p>
                             </div>
+                            <div style="flex: 1; text-align: center; padding: 5px; border-right:4px solid #8cc63f;">
+                                <p style="font-size: 16px;"><strong>Email:</strong><span t-esc="doc.email" style="font-size: 18px; color: #00ae4d;"/></p>
+                            </div>
+                            <div style="flex: 1; text-align: right; padding: 5px; border-right:4px solid #8cc63f;">
+                                <p style="font-size: 16px;"><strong>Date:</strong><span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')" style="font-size: 18px; color: #00ae4d;"/></p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div style="margin-top: 25px; display: flex; ">
+                            <div class="row" style="padding: 10px 0;text-align: left; background-color: azure;">
+                                <div class="col-6">
+                                    <p><strong style="color: #00ae4d;">Mobile:</strong> <span t-esc="doc.mobile"/></p>
+                                </div>
+                                <div class="col-12">
+                                    <p><strong style="color: #00ae4d;">Address:</strong> 
+                                        <span t-esc="doc.street"/> 
+                                        <span t-esc="doc.street2"/> 
+                                    </p>
+                                    <p> 
+                                        <span t-esc="doc.city"/> 
+                                        <span t-esc="doc.state_id"/>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div style="width: 100%;">
+                                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                                    <thead>
+                                        <tr style="background-color: #00ae4d; color: white; text-align: center;">
+                                            <th style="padding: 5px; color: white; border: 1px solid green;"><b>#</b></th>
+                                            <th style="padding: 5px; color: white; border: 1px solid green;"><b>Test Name</b></th>
+                                            <th style="padding: 5px; color: white; border: 1px solid green;">Checkup Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="number" t-value="1" />
+                                        <t t-foreach="doc.test_ids" t-as="test">
+                                            <tr style="background-color: #fff0; text-align: left; border-bottom: 1px solid gray; ">
+                                                <td>
+                                                    <span t-esc="number" />
+                                                    <t t-set="number" t-value="number + 1" />
+                                                </td>
+                                                <td>
+                                                        <span style="padding-left: 10px;"  t-out="test.name" />
+                                                </td>
+                                                <td>
+                                                    <span  style="padding-left: 10px;" t-out="test.create_date" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <div class="row" style="padding: 10px; text-align: left; margin-top: 30px; margin-bottom: 30px;">
+                            <p style="color:#00ae4d"><strong>Note:</strong></p>
+                           
+                            <p style="color: #666;"><strong>Confirm patient identity </strong>
+                                by matching the name, date of birth, and test requisition form before proceeding with the sample collection.
+                            </p>
                             
-          
-                        </div>
-
-                        <div class="row" style="padding: 10px 0;">
-                            <div class="col-6">
-                                <p><strong style="color: #17a2b8;">Email:</strong> <span t-esc="doc.email"/></p>
-                            </div>
-                            <div class="col-6">
-                                <p><strong style="color: #17a2b8;">Mobile:</strong> <span t-esc="doc.mobile"/></p>
-                            </div>
-                        </div>
-
-                        <div class="row" style="padding: 10px 0;">
-                            <div class="col-12">
-                                <p><strong style="color: #17a2b8;">Address:</strong> 
-                                    <span t-esc="doc.street"/> 
-                                    <span t-esc="doc.street2"/> 
-                                    <span t-esc="doc.city"/> 
-                                    <span t-esc="doc.state_id"/>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="row" style="padding: 10px; text-align: center; margin-top: 30px;">
-                            <p style="font-style: italic; color: #888;">Report generated by Dard_e_Lab</p>
+                            <p style="color: #666;"><strong>Label each sample immediately after collection </strong>
+                                with the correct patient information to avoid mix-ups and ensure proper handling.
+                            </p>
+                            <p style="color: #666;"><strong>Ensure proper hygiene and safety </strong>
+                                by wearing gloves, cleaning the collection site, and disposing of used materials in biohazard containers                            </p>
                         </div>
                         
                     </div>
-                </t>
+                <t t-call="Dard_e_Lab.worker_report_footer"/>
             </t>
         </t>
     </template>

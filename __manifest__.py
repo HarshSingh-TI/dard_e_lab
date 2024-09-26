@@ -14,6 +14,8 @@
         'views/res_config_views.xml',
         'views/test_package_views.xml',
         'views/menu_views.xml',
+        'report/custom_report_templates.xml',
+        'report/worker_header_footer.xml',
         'report/report_template.xml',
         'report/worker_report_template.xml',
 

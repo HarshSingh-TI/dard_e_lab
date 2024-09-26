@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<odoo>
+    
+    <template id="worker_report_header">
+        <div class="header" style="padding: 40px; padding-bottom: 0;">
+            <div style="display: flex; justify-content: space-between;">
+                <div style="position: absolute; height: 100%; width: 100%; left:2%; background-image: url('https://i.postimg.cc/BQxvMwvQ/header.png'); background-repeat: no-repeat; background-size: contain; z-index: -1;"></div>
+
+                <div style="margin-top: 90px;">
+                    <img src="https://i.postimg.cc/bvzJW05c/patholo.webp" alt="Company Logo" style="width: 150px; height: auto;" />
+                    <p><strong style="color: #00ae4d;">Pathways Pathology</strong></p>
+                    <p><strong style="color: #00ae4d;"> Block- D, Delhi</strong></p>
+                    <p><strong style="color: #00ae4d;"> 110078</strong></p>
+                                  
+                 </div>
+                
+                <div style="text-align: right; margin-top: 50px;">
+                    <p><strong style="color: #00ae4d;"> YOU  and  US :)</strong></p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+   
+    <template id="worker_report_footer">
+        <div class="footer" style="display:flex;border-top: 1px solid #ddd; padding-top: 30px;justify-content: space-between;">
+            <div style="text-align: left; opacity:0.5; ">
+                <p>Pathways Pathlabs</p>
+                <p>Block-D, Delhi, India</p>
+                <p>110078</p>
+                
+            </div>
+            <div style="text-align:center;">
+                <p><strong>Phone:</strong> +91 7291871951</p>
+                <p><strong>E-mail:</strong> dedekhoonde@gmail.com</p>
+                <p><strong>Website</strong> dedekhoonde.com</p>    
+            </div>      
+            <div style="text-align:right;">
+                <p><span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/></p>
+                <p>This is a computer-generated document</p>
+            </div>   
+        </div>
+        <img src="https://i.postimg.cc/xdBHNTrY/footer.png" style="width: 100%;" alt="" />
+    </template>
+</odoo>

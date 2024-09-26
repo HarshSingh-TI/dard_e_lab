@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<odoo>
+    
+    <template id="custom_report_header">
+        <div class="header" style="padding: 40px;">
+            <div style="display: flex; justify-content: space-between;">
+                
+                <div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI4v8m2qyEnTYCOAR1qoyRrWQ8KgqlTSWOgg&amp;s" alt="Company Logo" style="width: 150px; height: auto;" />
+                    <p>Pathways Pathlabs</p>
+                    <p>Block-D, Delhi, India</p>
+                    <p>110078</p>
+                                  
+                 </div>
+                
+                <div style="text-align: right;">
+                    <p><strong> YOU  and  US :)</strong></p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+   
+    <template id="custom_report_footer">
+        <div class="footer" style="display:flex;border-top: 1px solid #ddd; padding-top: 30px;justify-content: space-between;">
+        <div style="text-align: left; opacity:0.5; ">
+            <p>Pathways Pathlabs</p>
+            <p>Block-D, Delhi, India</p>
+            <p>110078</p>
+                    
+        </div>
+        <div style="text-align:center;">
+            <p><strong>Phone:</strong> +91 7291871951</p>
+            <p><strong>E-mail:</strong> dedekhoonde@gmail.com</p>
+            <p><strong>Website</strong> dedekhoonde.com</p>    
+        </div>      
+        <div style="text-align:right;">
+            <p><span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/></p>
+            <p>This is a computer-generated document</p>
+        </div>   
+             
+        </div>
+    </template>
+</odoo>
