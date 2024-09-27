@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <template id="custom_report_saleorder_document" inherit_id="sale.report_saleorder">
+
+    <!-- <xpath expr="//div[contains(@t-attf-class,'header')]" position="attributes">
+            <attribute name="style">background-color:red;</attribute>
+    </xpath> -->
+
+   
+   
+
+   <!-- <xpath expr="//div[@class='page']" position="attributes">
+            <attribute name="style" add="background-color: red" seperator=";"></attribute>
+        </xpath> -->
+
+     
+
+
+    
+       
+        
+    </template>
+</odoo>

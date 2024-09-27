@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_template_pathology_test_notification" model="mail.template">
+            <field name="name">Pathology Test Notification</field>
+            <field name="model_id" ref="product.model_product_product"/>
+            <field name="subject">Your Pathology Test: {object.reference}</field>
+            <field name="email_from">{{object.company_id.email}}</field>
+            <field name="partner_to">{{object.cus_email}}</field>
+            
+            <field name="body_html" type="html">
+               
+                <div style="font-family:Arial, sans-serif; font-size:14px; color:#333;">
+                    <p>Dear {object.cus_name},</p>
+                    <p>This is a reminder for your upcoming pathology test. Please see the details below:</p>
+                    <ul>
+                        <li><strong>Test Name:</strong> {object.name}</li>
+                        <li><strong>Test Date:</strong> {object.create_date}</li>
+                        <li><strong>Location:</strong> {object.cus_add}</li>
+                    </ul>
+                    <p><strong>Instructions:</strong> Please make sure to follow the preparation guidelines provided for this test.</p>
+                    <p>If you have any questions, feel free to contact us.</p>
+                   
+                    <field name="report_name">Test Info</field>
+                    <p>Best regards,</p>
+                </div>
+            
+            </field>
+        </record>
+    </data>
+</odoo>

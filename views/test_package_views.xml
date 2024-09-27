@@ -85,6 +85,12 @@
                     <label for="type"/>
                         <field name="type"/>
                 </div>
+
+
+                <div>
+                    <label for="cus_email"/>
+                        <field name="cus_email"/>
+                </div>
             </xpath>
 
 
@@ -95,6 +101,14 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
 
+            <xpath expr="//button[@name='action_open_label_layout']" position="after">
+                 <button name="send_test_email" type="object" string="Send Test Email" class="btn-primary"/>              
+            </xpath>
+
+
+            <xpath expr="//button[@name='action_open_label_layout']" position="after"> 
+                    <button name="send_email" type="object" string="Send Email" class="btn-primary"/>
+            </xpath>
 
             <xpath expr="//field[@name='tester_id']" position="after">
                     <div>

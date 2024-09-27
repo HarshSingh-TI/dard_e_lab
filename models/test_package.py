@@ -20,6 +20,7 @@ class TestPackage(models.Model):
 
     cus_name = fields.Char(string="Patient Name", required=True)
     cus_add = fields.Char(string="Address", required=True)
+    cus_email = fields.Char(string="email", required=True)
     
     list_price = fields.Float('Price', required=True)
     tester_id = fields.Many2one('res.partner', string='Sampler')
@@ -55,11 +56,31 @@ class TestPackage(models.Model):
                 val['standard_price'] = val['list_price']+ (val['list_price']*0.15)
 
         return super().create(vals_list)
+    
+
+
+    def send_email(self):
+
+        mail_values = {
+            'subject': 'Pathology Test Notification',
+            'body_html': '<p>Dear customer,</p><p>This is a test email from Pathways Pathology.</p>',
+            'email_to': 'object.company_id.email',  
+            'email_from': 'object.cus_email', 
+        }
+        mail = self.env['mail.mail'].create(mail_values)
+        mail.send()
+    
+
+
+    def send_test_email(self):
+        template = self.env.ref('Dard_e_Lab.email_template_pathology_test_notification')
+        template.send_mail(self.id, force_send=True)
+
 
     
     # @api.model
     # def write(self,vals_list):
-    #     self.ensure_one()
+    #     self.ensure_one() 
         
     #     for rec in self:
     #         if rec.home_sample:
