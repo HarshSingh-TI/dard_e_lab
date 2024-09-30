@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+        <!-- Inherit the web.external_layout_striped template -->
+        <template id="custom_external_layout" inherit_id="web.external_layout_striped">
+            <xpath expr="//div[contains(@class,'header')]" position="attributes">
+                <attribute name="style" add="height:140px; margin-top:35px; padding-top:10px;" separator=";" />
+            
+            </xpath>
+
+
+
+            
+            
+            <xpath expr="//img[@class='float-start']" position="attributes">
+                <attribute name="t-att-src">'https://i.postimg.cc/WzcTZxq6/bg.png'</attribute>
+                <attribute name="t-if"></attribute>
+            </xpath>
+ 
+            <xpath expr="//div[@class='mt0 text-end h3']" position="replace">
+                <div>
+                    <p style="line-height: 1.2; font-size: 14px; margin: 0; padding: 0;text-align: left;">
+                        <i class="bi bi-building" /> <strong>Address:</strong> 202, Block-D, Dwarka, Sec-09
+                    </p>
+                    <p style="line-height: 1.2; font-size: 14px; margin: 0; padding: 0;text-align: left;">
+                        <i class="bi bi-telephone" /> <strong>Contact:</strong> +91 7291871951 
+                    </p>
+                    <p style="line-height: 1.2; font-size: 14px; margin: 0; padding: 0;text-align: center;">
+                        <i class="bi bi-envelope" /> <strong>Email:</strong> khoondede@pyasa.com
+                    </p>
+                    <p style="line-height: 1.2; font-size: 14px; margin: 0; padding: 0;text-align: right;">
+                        <i class="bi bi-geo-alt" /> <strong>Location:</strong> Delhi, India
+                    </p>
+
+                    
+                    <p style="line-height: 1.2; font-size: 14px; margin: 0; padding: 0;" t-if="company.report_header" t-field="company.report_header"></p>
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+                </div>
+            </xpath>
+ 
+            <xpath expr="//div[contains(@class,'company_address')]" position="replace">
+                <div>
+                    <h4>
+                        <strong>Pathways Pathology</strong>
+                    </h4>
+                    <p style="position:relative; top:10%" t-if="company.company_details" t-field="company.company_details"></p>
+                </div>
+            </xpath>
+ 
+            <xpath expr="//div[contains(@class,'text-muted')]" position="before">
+                <h6>© Pathways Pathology, 2024. All rights reserved.</h6>
+            </xpath>
+        </template>
+    </data>
+</odoo>
+ 
+ 

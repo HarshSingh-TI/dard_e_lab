@@ -1,6 +1,8 @@
 from odoo import models, fields, api, exceptions
 from datetime import datetime, timedelta
 import logging
+import base64
+
 
 _l = logging.getLogger(__name__)
 
@@ -61,14 +63,28 @@ class TestPackage(models.Model):
 
     def send_email(self):
 
+        pdf_report = self.env['ir.actions.report'].sudo()._render_qweb_pdf('Dard_e_Lab.pathology_lab_report_template', [self.id])[0]
+
+        encoded_pdf = base64.b64encode(pdf_report)
+
         mail_values = {
             'subject': 'Pathology Test Notification',
             'body_html': '<p>Dear customer,</p><p>This is a test email from Pathways Pathology.</p>',
             'email_to': 'object.company_id.email',  
             'email_from': 'object.cus_email', 
+            'auto_delete': True,  
+            'attachment_ids': [(0, 0, {  
+                'name': 'ReportAttachment.pdf',
+                'type': 'binary',
+                'datas': encoded_pdf.decode('utf-8'),
+                'res_model': 'mail.mail',
+                'res_id': 0,
+                'mimetype': 'application/pdf'
+            })]
         }
         mail = self.env['mail.mail'].create(mail_values)
         mail.send()
+        return True
     
 
 

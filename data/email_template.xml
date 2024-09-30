@@ -24,8 +24,11 @@
                     <field name="report_name">Test Info</field>
                     <p>Best regards,</p>
                 </div>
+                
             
             </field>
+             <field name="report_template_ids" eval= "[(4,ref('Dard_e_Lab.test_package_report_temp'))]"/>
+       
         </record>
     </data>
 </odoo>

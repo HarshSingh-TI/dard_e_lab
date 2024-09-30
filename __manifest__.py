@@ -8,6 +8,8 @@
     'data':[
         'security/ir.model.access.csv',
         'report/custom_sale_order_report.xml',
+        'report/sale_order_report.xml',
+        'report/sale_inherit_views.xml',
         "data/sequence.xml",
         'views/sale_order_confirmation_wizard_views.xml',
         'views/sale_order_inherit_views.xml',
@@ -16,9 +18,9 @@
         'views/test_package_views.xml',
         'views/menu_views.xml',
         'report/custom_report_templates.xml',
+        'report/report_template.xml',
         'data/email_template.xml',
         'report/worker_header_footer.xml',
-        'report/report_template.xml',
         'report/worker_report_template.xml',
 
     ],
