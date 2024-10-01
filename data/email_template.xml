@@ -31,4 +31,20 @@
        
         </record>
     </data>
+
+    <data noupdate="0">
+        <record id="email_template_pathology_test_notification" model="mail.template">
+            <field name="name">Pathology Test Notification</field>
+            <field name="model_id" ref="model_product_product"/>
+            <field name="subject">Your Pathology Test Information</field>
+            <field name="email_from">${object.company_id.email}</field>
+            <field name="email_to">${object.cus_email}</field>
+            <field name="body_html">
+                <![CDATA[
+                <p>Dear ${object.cus_name},</p>
+                <p>Your pathology test for ${object.type} is scheduled on ${object.create_date}.</p>
+                ]]>
+            </field>
+        </record>
+    </data>
 </odoo>

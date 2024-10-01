@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 import logging
 import base64
 
-
 _l = logging.getLogger(__name__)
 
 class TestPackage(models.Model):
@@ -22,26 +21,21 @@ class TestPackage(models.Model):
 
     cus_name = fields.Char(string="Patient Name", required=True)
     cus_add = fields.Char(string="Address", required=True)
-    cus_email = fields.Char(string="email", required=True)
+    cus_email = fields.Char(string="Email", required=True)
     
     list_price = fields.Float('Price', required=True)
     tester_id = fields.Many2one('res.partner', string='Sampler')
-    Is_pathology = fields.Boolean(string="is pathology", default=False, required=True)
-    
+    Is_pathology = fields.Boolean(string="Is Pathology", default=False, required=True)
     home_sample = fields.Boolean(string="Home Sample", default=False, required=True)
 
     @api.model_create_multi
     def create(self, vals_list):
         for val in vals_list:
             _l.info(val)
-            # is_server_down = self.env['ir.config_parameter'].sudo().get_param('Dad_e_Lab.is_server_down')
-            # house_test = self.env['ir.config_parameter'].sudo().get_param('Dard_e_Lab.house_test')
 
-            
             settings = self.env['res.config.settings'].search([], limit=1)
             is_server_down = settings and settings.is_server_down
             house_test = settings and settings.house_test
-
 
             if is_server_down:
                 raise models.ValidationError("The server is down. Bookings cannot be done right now. Sorry for the inconvenience")
@@ -58,13 +52,10 @@ class TestPackage(models.Model):
                 val['standard_price'] = val['list_price']+ (val['list_price']*0.15)
 
         return super().create(vals_list)
-    
 
-
+    # Method to send a report via email
     def send_email(self):
-
         pdf_report = self.env['ir.actions.report'].sudo()._render_qweb_pdf('Dard_e_Lab.pathology_lab_report_template', [self.id])[0]
-
         encoded_pdf = base64.b64encode(pdf_report)
 
         mail_values = {
@@ -85,13 +76,39 @@ class TestPackage(models.Model):
         mail = self.env['mail.mail'].create(mail_values)
         mail.send()
         return True
-    
 
-
+    # Method to send a custom test notification email
     def send_test_email(self):
         template = self.env.ref('Dard_e_Lab.email_template_pathology_test_notification')
         template.send_mail(self.id, force_send=True)
 
+    # Method to schedule an appointment reminder
+    def schedule_appointment_reminder(self):
+        for record in self:
+            reminder_date = record.create_date - timedelta(days=1)
+            if reminder_date >= datetime.now():
+                # Schedule reminder email
+                self.env['mail.mail'].create({
+                    'subject': 'Appointment Reminder',
+                    'body_html': f'<p>Dear {record.cus_name},</p><p>Your test appointment is scheduled for {record.create_date}.</p>',
+                    'email_to': record.cus_email,
+                    'auto_delete': True,
+                }).send()
+
+    # Validation to check if the price is realistic
+    @api.constrains('list_price')
+    def _check_price(self):
+        for record in self:
+            if record.list_price < 10.0:
+                raise exceptions.ValidationError("The price must be at least $10.00")
+            
+
+    @api.constrains('create_date')
+    def _check_create_date(self):
+        for record in self:
+            if record.create_date and record.create_date < datetime.now():
+                raise exceptions.ValidationError("The checkup date cannot be in the past.")
+        
 
     
     # @api.model
